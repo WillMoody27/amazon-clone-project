@@ -1,5 +1,6 @@
 import { cart } from "../data/cart.js";
-import { products } from "../data/products.js"; // will be used to get the product based on the productId
+import { products } from "../data/products.js";
+import { formatCurrency } from "./utils/money.js";
 
 // iterate over the cart array and generate the HTML for each item by adding it to the cartHTML variable
 let cartSummaryHTML = "";
@@ -29,9 +30,9 @@ cart.forEach(({ productId, quantity }) => {
                 <div class="product-name">
                   ${matchingProduct.name}
                 </div>
-                <div class="product-price">$${(
-                  matchingProduct.priceCents / 100
-                ).toFixed(2)}</div>
+                <div class="product-price">$${formatCurrency(
+                  matchingProduct.priceCents
+                )}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${quantity}</span> </span>
                   <span class="update-quantity-link link-primary">

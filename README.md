@@ -229,3 +229,21 @@ Potential areas for enhancement:
 - Implement payment processing
 - Add address management system
 - Implement order confirmation emails
+
+### Utility Functions
+
+#### money.js
+
+A utility module `money.js` was implemented to handle currency formatting throughout the project. This ensures all price displays are consistent and properly formatted as currency.
+
+- The `formatCurrency` function is imported and used in scripts such as `checkout.js` and `amazon.js` to convert price values (in cents) to formatted currency strings (e.g., $10.90).
+- This approach centralizes currency formatting logic, making the codebase more maintainable and reducing duplication.
+
+**Example usage:**
+
+```js
+import { formatCurrency } from "./utils/money.js";
+
+const price = 1090; // in cents
+console.log(formatCurrency(price)); // "$10.90"
+```
