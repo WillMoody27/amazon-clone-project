@@ -32,10 +32,10 @@ A simplified Amazon-like e-commerce website built with HTML, CSS, and JavaScript
 │   ├── ratings/            # Rating star images
 │   └── icons/              # UI icons
 ├── data/
-│   ├── products.js         # Product data
-│   └── cart.js            # Cart data and functionality
+│   ├── products.js         # Product data and exports
+│   └── cart.js            # Cart data and functionality exports
 ├── scripts/
-│   └── amazon.js           # Main JavaScript file
+│   └── amazon.js           # Main JavaScript file (ES6 module)
 └── styles/
     ├── shared/             # Shared styles
     │   ├── general.css     # Global styles
@@ -45,6 +45,16 @@ A simplified Amazon-like e-commerce website built with HTML, CSS, and JavaScript
 ```
 
 ## Technical Details
+
+### Module System
+
+The project uses ES6 modules for better code organization and dependency management:
+
+- Main script (`amazon.js`) is loaded as a module using `type="module"`
+- Cart functionality is imported from `cart.js`
+- Product data is imported from `products.js`
+- Prevents naming conflicts between different files
+- Enables better code organization and maintainability
 
 ### Product Data Structure
 
@@ -73,6 +83,13 @@ Cart items are stored with the following structure:
   productId: "unique-product-id",  // References the product's id
   quantity: 1  // Number of items in cart
 }
+```
+
+The cart is managed through a module system:
+
+```javascript
+// Import cart from cart.js
+import { cart as myCart } from "../data/cart.js";
 ```
 
 ### Key Features Implementation
@@ -135,6 +152,7 @@ The cart quantity is updated in real-time using the following process:
 ## Dependencies
 
 - Google Fonts (Roboto)
+- ES6 Modules support in browser
 - No external JavaScript libraries required
 
 ## Browser Support
@@ -142,6 +160,7 @@ The cart quantity is updated in real-time using the following process:
 The project uses modern web standards and should work in all modern browsers that support:
 
 - ES6 JavaScript
+- ES6 Modules
 - CSS Grid
 - Flexbox
 - Local Storage (for cart persistence)
