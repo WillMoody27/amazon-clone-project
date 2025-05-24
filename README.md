@@ -191,7 +191,7 @@ The checkout system includes:
 
 3. Order Management:
    - Quantity updates in checkout
-   - Delete item functionality
+   - **Delete item functionality:** Users can now remove items from the cart directly from the checkout page by clicking the delete link. This uses a data attribute (`data-product-id`) to identify which product to remove.
    - Real-time price updates
 
 ## Getting Started
