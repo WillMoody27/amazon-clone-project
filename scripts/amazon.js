@@ -1,3 +1,6 @@
+import { cart as myCart } from "../data/cart.js";
+import { products } from "../data/products.js";
+
 let productsHTML = "";
 
 products.forEach(({ id, image, name, ratingImg, rating, priceCents }) => {
@@ -73,7 +76,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     let matchingItem;
 
     // Check if the product is already in the cart
-    cart.forEach((item) => {
+    myCart.forEach((item) => {
       if (productId === item.productId) {
         matchingItem = item;
       }
@@ -82,7 +85,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     if (matchingItem) {
       matchingItem.quantity += 1;
     } else {
-      cart.push({
+      myCart.push({
         productId: productId,
         quantity: 1,
       });
@@ -90,7 +93,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
 
     // compute total quantity of items in the cart
     let cartQuantity = 0;
-    cart.forEach((item) => {
+    myCart.forEach((item) => {
       cartQuantity += item.quantity;
     });
 
