@@ -22,11 +22,18 @@ A simplified Amazon-like e-commerce website built with HTML, CSS, and JavaScript
   - Increment quantity for existing items
   - Cart state persistence
   - Cart quantity display
+- Checkout functionality:
+  - Dynamic cart summary
+  - Delivery date options
+  - Shipping cost calculations
+  - Product quantity management
+  - Order total calculation
 
 ## Project Structure
 
 ```
 ├── amazon.html              # Main product listing page
+├── checkout.html           # Checkout page
 ├── images/                  # Image assets
 │   ├── products/           # Product images
 │   ├── ratings/            # Rating star images
@@ -35,22 +42,39 @@ A simplified Amazon-like e-commerce website built with HTML, CSS, and JavaScript
 │   ├── products.js         # Product data and exports
 │   └── cart.js            # Cart data and functionality exports
 ├── scripts/
-│   └── amazon.js           # Main JavaScript file (ES6 module)
+│   ├── amazon.js           # Main JavaScript file (ES6 module)
+│   └── checkout.js         # Checkout page JavaScript (ES6 module)
 └── styles/
     ├── shared/             # Shared styles
     │   ├── general.css     # Global styles
     │   └── amazon-header.css # Header styles
     └── pages/
-        └── amazon.css      # Product page styles
+        ├── amazon.css      # Product page styles
+        └── checkout.css    # Checkout page styles
 ```
 
 ## Technical Details
+
+### Data Normalization
+
+The project implements data normalization to ensure consistent and efficient data management:
+
+![Data Normalization Diagram](assets/normalized-data-img.png)
+
+Key aspects of data normalization:
+
+- Products and cart data are stored in separate modules
+- Cart items reference products by ID to maintain data integrity
+- Prevents data duplication and ensures consistency
+- Enables efficient updates and modifications
+- Supports modular development and maintenance
 
 ### Module System
 
 The project uses ES6 modules for better code organization and dependency management:
 
 - Main script (`amazon.js`) is loaded as a module using `type="module"`
+- Checkout script (`checkout.js`) is loaded as a module using `type="module"`
 - Cart functionality is imported from `cart.js`
 - Product data is imported from `products.js`
 - Prevents naming conflicts between different files
@@ -112,6 +136,7 @@ import { cart as myCart } from "../data/cart.js";
    - Default selection is 1
 
 4. **Add to Cart**
+
    - Visual feedback when items are added to cart
    - Cart quantity counter in header
    - Cart state management:
@@ -119,10 +144,15 @@ import { cart as myCart } from "../data/cart.js";
      - Increments quantity for existing items
      - Adds new items with quantity 1
    - Cart data persistence using cart.js
-   - Real-time cart quantity updates:
-     - Calculates total items in cart
-     - Updates cart quantity display in header
-     - Uses DOM manipulation to reflect changes immediately
+   - Real-time cart quantity updates
+
+5. **Checkout System**
+   - Dynamic cart summary generation
+   - Delivery date options with different shipping costs
+   - Product quantity management in checkout
+   - Order total calculation
+   - Responsive checkout layout
+   - Integration with cart module for data consistency
 
 ## Technical Implementation Details
 
@@ -142,12 +172,34 @@ The cart quantity is updated in real-time using the following process:
    - New total is displayed in the header
    - Updates happen immediately after each cart modification
 
+### Checkout Implementation
+
+The checkout system includes:
+
+1. Cart Summary Generation:
+
+   - Dynamically pulls cart data from cart.js
+   - Displays product images, names, and quantities
+   - Shows individual item prices and totals
+
+2. Delivery Options:
+
+   - Multiple delivery date choices
+   - Different shipping cost tiers
+   - Radio button selection for delivery options
+
+3. Order Management:
+   - Quantity updates in checkout
+   - Delete item functionality
+   - Real-time price updates
+
 ## Getting Started
 
 1. Clone the repository
 2. Open `amazon.html` in a web browser
 3. Browse products and interact with the interface
-4. Add items to cart and observe the cart functionality
+4. Add items to cart and proceed to checkout
+5. Test the checkout functionality with different delivery options
 
 ## Dependencies
 
@@ -169,11 +221,11 @@ The project uses modern web standards and should work in all modern browsers tha
 
 Potential areas for enhancement:
 
-- Implement checkout process
 - Add product search functionality
 - Create product detail pages
 - Add user authentication
 - Implement a backend for data persistence
-- Add cart item removal functionality
-- Implement cart total calculation
 - Add order history tracking
+- Implement payment processing
+- Add address management system
+- Implement order confirmation emails
