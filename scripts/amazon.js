@@ -1,6 +1,6 @@
 let productsHTML = "";
 
-products.forEach(({ image, name, ratingImg, rating, priceCents }) => {
+products.forEach(({ id, image, name, ratingImg, rating, priceCents }) => {
   const { count } = rating;
 
   // Add the HTML to the productsHTML variable - using the accumulator pattern
@@ -49,12 +49,45 @@ products.forEach(({ image, name, ratingImg, rating, priceCents }) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">Add to Cart</button>
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${id}">Add to Cart</button>
         </div>
   `;
 });
 
 // Add products to the DOM
-console.log(productsHTML);
-
+// console.log(productsHTML);
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
+
+document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+  // EventListener to add items to cart
+  button.addEventListener("click", () => {
+    // push to cart using the data-attribute name - purpose is to attach any data to an element
+    const productId = button.dataset.productId;
+    /*
+    Add product to the cart
+    If it is, increment the quantity
+    If it is not, add the product to the cart
+    Next include a unique id to the product in the cart
+    */
+
+    let matchingItem;
+
+    // Check if the product is already in the cart
+    cart.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+      }
+    });
+
+    if (matchingItem) {
+      matchingItem.quantity += 1;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1,
+      });
+    }
+
+    console.log(cart);
+  });
+});
