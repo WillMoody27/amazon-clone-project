@@ -187,6 +187,7 @@ The checkout system includes:
    - Multiple delivery date choices
    - Different shipping cost tiers
    - Radio button selection for delivery options
+   - Each product's delivery options use a unique radio button group name (e.g., `delivery-option-<productId>`) to ensure independent selection for each cart item.
 
 3. Order Management:
    - Quantity updates in checkout
