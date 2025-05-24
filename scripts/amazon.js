@@ -1,4 +1,4 @@
-import { cart as myCart } from "../data/cart.js";
+import { cart, addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let productsHTML = "";
@@ -61,43 +61,29 @@ products.forEach(({ id, image, name, ratingImg, rating, priceCents }) => {
 // console.log(productsHTML);
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
+// Update cart quantity
+function updateCartQuantity() {
+  // compute total quantity of items in the cart
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  // Use dom to update the cart quantity
+  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+}
+
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
   // EventListener to add items to cart
   button.addEventListener("click", () => {
     // push to cart using the data-attribute name - purpose is to attach any data to an element
+
+    // Get the product id from the data-attribute
     const productId = button.dataset.productId;
-    /*
-    Add product to the cart
-    If it is, increment the quantity
-    If it is not, add the product to the cart
-    Next include a unique id to the product in the cart
-    */
 
-    let matchingItem;
+    // Add the product to the cart
+    addToCart(productId);
 
-    // Check if the product is already in the cart
-    myCart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-
-    if (matchingItem) {
-      matchingItem.quantity += 1;
-    } else {
-      myCart.push({
-        productId: productId,
-        quantity: 1,
-      });
-    }
-
-    // compute total quantity of items in the cart
-    let cartQuantity = 0;
-    myCart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-
-    // Use dom to update the cart quantity
-    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+    updateCartQuantity();
   });
 });
