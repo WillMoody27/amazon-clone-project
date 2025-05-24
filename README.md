@@ -1,4 +1,4 @@
-# Amazon Clone Project
+# Amazon Clone Report
 
 A simplified Amazon-like e-commerce website built with HTML, CSS, and JavaScript. This project demonstrates the implementation of a product listing page with features similar to Amazon's interface.
 
