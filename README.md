@@ -102,6 +102,28 @@ Cart items are stored with the following structure:
      - Increments quantity for existing items
      - Adds new items with quantity 1
    - Cart data persistence using cart.js
+   - Real-time cart quantity updates:
+     - Calculates total items in cart
+     - Updates cart quantity display in header
+     - Uses DOM manipulation to reflect changes immediately
+
+## Technical Implementation Details
+
+### Cart Quantity Updates
+
+The cart quantity is updated in real-time using the following process:
+
+1. When an item is added to cart:
+   - System checks if item exists in cart
+   - Increments quantity if item exists
+   - Adds new item if it doesn't exist
+2. Cart total is calculated by:
+   - Iterating through all cart items
+   - Summing up quantities
+3. DOM is updated:
+   - Cart quantity element is selected using `.js-cart-quantity` class
+   - New total is displayed in the header
+   - Updates happen immediately after each cart modification
 
 ## Getting Started
 
