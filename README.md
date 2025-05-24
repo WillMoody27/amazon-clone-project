@@ -190,9 +190,19 @@ The checkout system includes:
    - Each product's delivery options use a unique radio button group name (e.g., `delivery-option-<productId>`) to ensure independent selection for each cart item.
 
 3. Order Management:
+
    - Quantity updates in checkout
    - **Delete item functionality:** Users can now remove items from the cart directly from the checkout page by clicking the delete link. This uses a data attribute (`data-product-id`) to identify which product to remove.
    - Real-time price updates
+
+4. **Delete Functionality Implementation:**
+   - Each cart item has a delete link with a unique `data-product-id` attribute
+   - Clicking the delete link triggers the following process:
+     1. Identifies the product to remove using the `data-product-id`
+     2. Calls `removeFromCart(productId)` to update the cart data
+     3. Removes the corresponding cart item container from the DOM using the class `js-cart-item-container-${productId}`
+   - The UI updates immediately to reflect the removed item
+   - Maintains data consistency between the cart state and visual representation
 
 ## Getting Started
 
